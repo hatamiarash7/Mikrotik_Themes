@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8" /> 
+    <title>
+        Hotspot Login
+    </title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+	<!--
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+<form class="main" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+<input type="hidden" name="dst" value="$(link-orig)" />
+<input type="hidden" name="popup" value="true" />
+  <h1>Hotspot Login</h1>
+  <div class="inset">
+  <p>	<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+		<label for="username">Voucher Username</label><input name="username" type="text" value="$(username)" id="username"/>
+  </p>
+  <p>
+    <label for="password">Voucher Password</label><input name="password" type="password" id="password"/>
+  </p>
+  $(if error)<label style="color: #FF8080;">$(error)</label>$(endif)
+  </div>
+  <p class="p-container">
+    <input type="submit" name="go" id="go" value="Log in">
+  </p>
+   
+</form>
+
+<script type="text/javascript">
+<!--
+  document.login.username.focus();
+//-->
+</script>
+</body>
+</html>
